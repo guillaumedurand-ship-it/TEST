@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e36">
+  <title>La Gévraisière · Quiz de départ</title>
+  <style>
+    :root { --forest:#173e36; --pine:#28604f; --paper:#fffdf8; --ink:#18332e; --muted:#67776f; --line:#d8dfd6; --green:#21824b; --green-soft:#e2f5e8; --red:#bd3f3e; --yellow:#946a16; --shadow:0 20px 55px rgba(23,62,54,.15); }
+    * { box-sizing:border-box; } body { min-height:100vh; margin:0; color:var(--ink); background:linear-gradient(135deg,#edf2e9,#f8f5ef 52%,#e4eee4); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; transition:background .55s ease; } body.ready { background:radial-gradient(circle at 15% 5%,#edfff0 0 17%,transparent 38%),linear-gradient(135deg,#b8e9c4,#e4f8e5 55%,#a5dbb4); }
+    .shell { width:min(760px,calc(100% - 28px)); margin:auto; padding:clamp(18px,5vw,55px) 0; } .top { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:24px; } .brand { color:var(--forest); font-size:.76rem; font-weight:900; letter-spacing:.13em; text-transform:uppercase; } .restart { min-height:44px; padding:9px 13px; border:1px solid #b9c8bd; border-radius:10px; color:var(--forest); background:#ffffffaa; cursor:pointer; font-weight:750; }
+    .progress { height:10px; overflow:hidden; border-radius:99px; background:#d6dfd6; } .progress i { display:block; width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,#e3ae3b,#d48722); transition:width .35s ease; } .progress-line { display:flex; justify-content:space-between; margin:10px 1px 26px; color:var(--muted); font-size:.86rem; font-weight:700; }
+    .card { min-height:440px; display:flex; flex-direction:column; padding:clamp(25px,6vw,56px); border:1px solid #fff; border-radius:28px; background:var(--paper); box-shadow:var(--shadow); } .category { display:flex; gap:12px; align-items:center; color:var(--pine); font-size:.9rem; font-weight:850; } .icon { display:grid; width:46px; height:46px; place-items:center; border-radius:14px; background:#e7f0e7; font-size:1.55rem; }
+    h1 { max-width:590px; margin:32px 0 auto; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2rem,5vw,3.6rem); line-height:1.04; letter-spacing:-.045em; } .hint { margin:22px 0 16px; color:var(--muted); font-size:.91rem; }
+    .answers { display:grid; grid-template-columns:repeat(3,1fr); gap:11px; } .answer { min-height:78px; border:2px solid var(--line); border-radius:15px; background:#fff; cursor:pointer; font-size:1rem; font-weight:900; transition:.16s; } .answer:hover { transform:translateY(-2px); border-color:#8a9a8f; } .answer:focus-visible,.restart:focus-visible,.previous:focus-visible { outline:3px solid #e0ae3a; outline-offset:3px; } .answer.ok:hover { color:#fff; border-color:var(--green); background:var(--green); } .answer.ko:hover { color:#fff; border-color:var(--red); background:var(--red); } .answer.na:hover { color:#fff; border-color:var(--yellow); background:var(--yellow); }
+    .lower { display:flex; justify-content:space-between; align-items:center; gap:10px; min-height:48px; margin-top:18px; } .previous { min-height:48px; padding:8px 0; border:0; color:var(--forest); background:transparent; cursor:pointer; font-weight:800; } .previous:disabled { opacity:.36; cursor:default; } .note { color:var(--muted); text-align:right; font-size:.78rem; }
+    .result { display:none; text-align:center; } .result.show { display:flex; align-items:center; justify-content:center; } .result h1 { margin:20px auto; } .flag { font-size:4.5rem; line-height:1; } .result p { max-width:430px; color:var(--muted); font-size:1.05rem; line-height:1.5; } .summary { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:20px 0; } .pill { padding:9px 13px; border-radius:99px; background:#edf1eb; font-size:.86rem; font-weight:800; } .pill.ko { color:#8e2828; background:#ffe4e2; } .result .primary { min-height:56px; padding:12px 20px; border:0; border-radius:13px; color:#fff; background:var(--forest); cursor:pointer; font-weight:900; }
+    @media(max-width:480px) { .shell { width:min(100% - 20px,760px); } .card { min-height:500px; padding:28px 21px; border-radius:20px; } h1 { margin-top:27px; } .answers { gap:8px; } .answer { min-height:74px; font-size:.92rem; } .top { margin-bottom:17px; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="top"><div class="brand">La Gévraisière · Départ</div><button class="restart" id="reset">Recommencer</button></div>
+    <div class="progress" aria-label="Progression"><i id="bar"></i></div><div class="progress-line"><span id="position">Question 1 sur 26</span><span id="categoryName"></span></div>
+    <section class="card" id="questionCard">
+      <div class="category"><span class="icon" id="icon" aria-hidden="true"></span><span id="category"></span></div>
+      <h1 id="question"></h1>
+      <div><p class="hint">Cette étape est-elle réglée ?</p><div class="answers"><button class="answer ok" data-answer="ok">✓<br>OK</button><button class="answer ko" data-answer="ko">✕<br>KO</button><button class="answer na" data-answer="na">—<br>N/A</button></div><div class="lower"><button class="previous" id="previous">← Question précédente</button><span class="note">N/A est accepté si l’étape ne concerne pas ce départ.</span></div></div>
+    </section>
+    <section class="card result" id="result"></section>
+  </main>
+  <script>
+    const groups=[
+      ['Salles de bains','🛁',['Récupérer le linge humide','Vider les poubelles des SdB']],
+      ['Chambres','🛏️',['Tirer les lits du mur','Retirer les draps des lits (à valider avec Maman)','Fermer les Velux (incluant celui de la salle de bains)']],
+      ['Salon','🛋️',['Enlever les cendres de la cheminée','Couvrir les 3 canapés']],
+      ['Extérieur','🌿',["Ranger les outils Makita à l'intérieur de la maison ou dans l’atelier","Ranger la plancha (dans l'atelier)","Vérifier l'appentis (ne rien laisser dehors)","Fermer l'atelier (et laisser la clé dans la cuisine)"]],
+      ['Cuisine','🍽️',['Vider cafetière Nespresso','Vider le frigo','Faire une photo du frigo','Laisser le lave-vaisselle ouvert',"Couvrir l'électroménager avec leur housse",'Ne pas laisser de pain et de nourriture dans la cuisine ! (souris)','Sortir les poubelles','Couper le chauffe-eau au compteur (baisser le bouton « chauffe-eau »)']],
+      ['Check final','🔐',['Vérifier les radiateurs (mode auto/maison)','Fermer les volets (avec les barres)','Fermer aussi le volet des WC !','Mettre les protections sur les portes','Fermer la porte du séjour à clefs',"Fermer la porte d'entrée à clefs",'Régler le programme de chauffage sur l’app Voltalis (Guiom)']]
+    ];
+    const questions=groups.flatMap(([category,icon,items])=>items.map(text=>({category,icon,text}))), key='gevraisiere-checkout-quiz';
+    let answers=JSON.parse(localStorage.getItem(key)||'{}'), current=0;
+    const card=document.querySelector('#questionCard'), result=document.querySelector('#result'), question=document.querySelector('#question'), category=document.querySelector('#category'), icon=document.querySelector('#icon'), categoryName=document.querySelector('#categoryName'), position=document.querySelector('#position'), bar=document.querySelector('#bar'), previous=document.querySelector('#previous');
+    function save(){localStorage.setItem(key,JSON.stringify(answers));}
+    function render(){ const item=questions[current]; document.body.classList.remove('ready'); card.style.display='flex'; result.classList.remove('show'); question.textContent=item.text; category.textContent=item.category; categoryName.textContent=item.category; icon.textContent=item.icon; position.textContent=`Question ${current+1} sur ${questions.length}`; bar.style.width=`${Object.keys(answers).length/questions.length*100}%`; previous.disabled=current===0; }
+    function showResult(){ const ok=Object.values(answers).filter(a=>a==='ok').length, na=Object.values(answers).filter(a=>a==='na').length, ko=Object.values(answers).filter(a=>a==='ko').length, ready=ko===0&&Object.keys(answers).length===questions.length; card.style.display='none'; result.classList.add('show'); document.body.classList.toggle('ready',ready); bar.style.width='100%'; position.textContent='Vérification terminée'; categoryName.textContent=''; result.innerHTML=ready?`<div><div class="flag">🚩</div><h1>Vous pouvez partir l’esprit léger.</h1><p>Toutes les étapes ont été traitées. Les éléments N/A ont bien été pris en compte.</p><div class="summary"><span class="pill">${ok} OK</span><span class="pill">${na} N/A</span></div><button class="primary" id="review">Revoir mes réponses</button></div>`:`<div><div class="flag">🔎</div><h1>Encore un petit point à régler.</h1><p>${ko} réponse${ko>1?'s':''} KO ${ko>1?'restent':'reste'} à résoudre avant de partir en paix.</p><div class="summary"><span class="pill">${ok} OK</span><span class="pill">${na} N/A</span><span class="pill ko">${ko} KO</span></div><button class="primary" id="review">Revoir mes réponses</button></div>`; document.querySelector('#review').onclick=()=>{current=questions.findIndex((_,i)=>answers[i]==='ko'); if(current<0)current=0; render();}; }
+    document.querySelector('.answers').addEventListener('click',e=>{const button=e.target.closest('[data-answer]'); if(!button)return; answers[current]=button.dataset.answer; save(); if(current===questions.length-1)showResult(); else {current++;render();}});
+    previous.onclick=()=>{if(current>0){current--;render();}};
+    document.querySelector('#reset').onclick=()=>{if(confirm('Effacer toutes les réponses et recommencer le quiz ?')){answers={};current=0;localStorage.removeItem(key);render();}};
+    render();
+  </script>
+</body>
+</html>
