@@ -1,78 +1,184 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rail Ready — Snake Challenge</title>
+  <meta http-equiv="Cache-Control" content="no-store, max-age=0">
+  <meta name="theme-color" content="#173e36">
+  <title>La Gévraisière · Checklist de départ</title>
   <style>
-    :root { --ink:#071b2e; --navy:#08243a; --blue:#0b5e8e; --cyan:#37d6d0; --yellow:#ffd65a; --paper:#f5f2ea; --muted:#a8c2d0; --red:#e75959; }
-    * { box-sizing:border-box; } body { margin:0; min-height:100vh; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
-    .shell { min-height:100vh; display:grid; grid-template-columns:minmax(280px, 32vw) 1fr; }
-    aside { padding:clamp(28px,5vw,70px); color:white; background:radial-gradient(circle at 8% 8%,#15729f 0 2px,transparent 3px) 0 0/28px 28px,linear-gradient(155deg,#0a527d,#071b2e 70%); display:flex; flex-direction:column; justify-content:space-between; }
-    .brand { font-weight:900; letter-spacing:.13em; font-size:.82rem; color:var(--cyan); } h1 { font-size:clamp(2.4rem,4.7vw,5.3rem); line-height:.91; margin:22px 0; letter-spacing:-.06em; } .intro { max-width:320px; color:#c5dce7; font-size:1rem; line-height:1.55; }
-    .route { border-top:1px solid #43829f; padding-top:22px; color:#d8ebef; line-height:1.5; font-size:.85rem; } .route strong { color:var(--yellow); display:block; text-transform:uppercase; letter-spacing:.12em; font-size:.7rem; margin-bottom:7px; }
-    main { padding:clamp(22px,4vw,54px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; overflow:hidden; }
-    .hud { width:min(680px,100%); display:flex; align-items:center; justify-content:space-between; } .hud div { font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; font-weight:800; color:#49667a; } .hud strong { color:var(--blue); font-size:1rem; margin-left:8px; }
-    .progress { width:175px; height:8px; border-radius:30px; overflow:hidden; background:#d9e3e4; display:inline-block; vertical-align:middle; } .progress i { height:100%; background:var(--cyan); display:block; width:0; transition:width .3s; }
-    .board-wrap { position:relative; width:min(680px,calc(100vw - 44px)); aspect-ratio:1; border:12px solid #fff; box-shadow:0 18px 45px #0d2c4122; background:#dcecf0; }
-    canvas { display:block; width:100%; height:100%; background:linear-gradient(90deg,#d1e6e8 1px,transparent 1px),linear-gradient(#d1e6e8 1px,transparent 1px),#eaf4f3; background-size:5% 5%; }
-    .cover { position:absolute; inset:0; display:grid; place-items:center; text-align:center; padding:30px; background:#071b2ee8; color:white; } .cover.hidden, .modal.hidden { display:none; } .cover h2 { font-size:clamp(2rem,5vw,4.5rem); margin:0; letter-spacing:-.06em; line-height:.92; } .cover p { color:#b9d4df; max-width:360px; line-height:1.5; } button { border:0; cursor:pointer; font:inherit; font-weight:800; } .start { padding:14px 21px; background:var(--yellow); color:var(--ink); border-radius:4px; margin-top:10px; } .start:hover { background:#ffe692; }
-    .keys { display:flex; gap:8px; color:#587183; font-size:.8rem; align-items:center; } kbd { padding:3px 7px; border:1px solid #b9cbd3; border-bottom-width:3px; border-radius:4px; background:#fff; font-family:inherit; }
-    .modal { position:fixed; z-index:2; inset:0; display:grid; place-items:center; padding:20px; background:#071b2ebd; } .question-card { width:min(670px,100%); background:#fff; padding:clamp(24px,5vw,48px); box-shadow:0 18px 50px #00111b66; border-top:8px solid var(--cyan); } .eyebrow { color:var(--blue); text-transform:uppercase; font-weight:900; letter-spacing:.15em; font-size:.72rem; } .question-card h2 { font-size:clamp(1.5rem,3vw,2.3rem); letter-spacing:-.035em; line-height:1.15; margin:12px 0 25px; } .answers { display:grid; gap:10px; } .answer { text-align:left; padding:14px 16px; background:#f1f6f6; color:#18364a; border-left:4px solid #c1d5da; transition:.15s; } .answer:hover:not(:disabled) { background:#dff5f2; border-color:var(--cyan); transform:translateX(3px); } .answer:disabled { cursor:default; } .answer.correct { background:#ddf6ea; border-color:#32a86b; } .answer.incorrect { background:#ffe3e1; border-color:var(--red); } .answer span { color:#6a8794; display:inline-block; width:28px; }
-    .feedback { min-height:26px; margin:18px 0 0; font-weight:700; color:#31596b; } .continue { float:right; margin-top:12px; padding:11px 17px; color:white; background:var(--blue); border-radius:4px; }
-    .result .score { color:var(--cyan); font-size:4.2rem; line-height:1; margin:16px 0; font-weight:900; } .result .validated { color:#13865a; font-weight:900; font-size:1.25rem; } .result .not-yet { color:#9c5c13; font-weight:900; font-size:1.25rem; }
-    @media(max-width:700px) { .shell { grid-template-columns:1fr; } aside { min-height:260px; padding:30px; } h1 { font-size:3.2rem; } main { padding:28px 22px; } .route { display:none; } }
+    :root {
+      --forest: #173e36;
+      --forest-light: #2a6754;
+      --paper: #fffdf8;
+      --ink: #18332e;
+      --muted: #63746d;
+      --sun: #e4b748;
+      --shadow: 0 20px 48px rgba(23, 62, 54, .13);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 100% 0, #dcebdc 0 13%, transparent 40%),
+        linear-gradient(145deg, #eef2e9, #f8f5ee);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(calc(100% - 32px), 760px);
+      margin: 0 auto;
+      padding: 34px 0 48px;
+    }
+
+    .eyebrow {
+      margin: 0 0 11px;
+      color: var(--forest-light);
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 560px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.7rem, 12vw, 5.6rem);
+      line-height: .92;
+      letter-spacing: -.06em;
+    }
+
+    .intro {
+      max-width: 530px;
+      margin: 22px 0 34px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    .mode-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .mode-card {
+      display: block;
+      padding: 23px;
+      color: inherit;
+      border: 1px solid #fff;
+      border-radius: 22px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .mode-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 52px rgba(23, 62, 54, .18);
+    }
+
+    .mode-card:focus-visible {
+      outline: 4px solid var(--sun);
+      outline-offset: 4px;
+    }
+
+    .mode-heading {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .mode-icon {
+      display: grid;
+      width: 58px;
+      height: 58px;
+      flex: 0 0 58px;
+      place-items: center;
+      border-radius: 17px;
+      background: #e6f0e6;
+      font-size: 2rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.33rem;
+    }
+
+    .arrow {
+      margin-left: auto;
+      color: var(--forest-light);
+      font-size: 1.65rem;
+    }
+
+    .mode-card p {
+      margin: 15px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 6px 10px;
+      color: #20613f;
+      border-radius: 99px;
+      background: #e4f4e7;
+      font-size: .76rem;
+      font-weight: 850;
+    }
+
+    footer {
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: .81rem;
+      line-height: 1.5;
+    }
+
+    @media (min-width: 620px) {
+      main { padding-top: 68px; }
+      .mode-list { grid-template-columns: 1fr 1fr; }
+      .mode-card { min-height: 285px; }
+      .mode-heading { align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
-  <div class="shell"><aside><div><div class="brand">Rail Transport Academy</div><h1>Signal<br>Snake.</h1><p class="intro">Navigate the network. Collect each signal block, then prove the knowledge behind a reliable railway.</p></div><div class="route"><strong>Mission brief</strong>10 signals · 10 questions<br>Commercial · Operations · Network · Disruption</div></aside>
-  <main><div class="hud"><div>Signals collected <strong id="count">0 / 10</strong></div><div class="progress"><i id="bar"></i></div><div>Correct <strong id="correct">0</strong></div></div><div class="board-wrap"><canvas id="game" width="600" height="600" aria-label="Snake game board"></canvas><div class="cover" id="cover"><div><div class="eyebrow">End-of-module assessment</div><h2>Ready to<br>run the line?</h2><p>Use the arrow keys or WASD to guide the train. Every signal block unlocks a knowledge check.</p><button class="start" id="start">Start challenge</button></div></div></div><div class="keys"><span>Drive with</span><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd><span>or</span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div></main></div>
-  <div class="modal hidden" id="modal"><section class="question-card" id="questionCard"></section></div>
-  <script>
-    const bank = [
-      ['Commercial','What is the primary purpose of yield management on rail services?','To maximise revenue by matching fares to demand and capacity','To sell every seat at the same low fare','To remove all off-peak tickets'],
-      ['Commercial','Which measure best describes how full a train is?','Load factor: passenger journeys divided by available capacity','Average ticket price only','The number of stations served'],
-      ['Commercial','What does an advance ticket normally encourage?','Earlier booking and more predictable demand','Unlimited last-minute travel','Free first-class upgrades'],
-      ['Operations','Why is a robust timetable margin included?','To absorb small variations and support punctuality','To make every journey longer','To avoid staffing trains'],
-      ['Operations','What is the safest response to a signal at danger?','Stop before it and follow the authorised procedure','Pass it slowly without permission','Speed up to clear the section'],
-      ['Operations','What is a train crew diagram?','A planned roster of duties and train workings','A map showing track gradients only','A list of passenger complaints'],
-      ['Network','What is headway?','The planned time separation between consecutive trains','The distance from a train to its depot','The time a journey takes end to end'],
-      ['Network','Why is a junction a capacity constraint?','Conflicting routes must be safely separated','Junctions always allow trains to overtake','It makes ticket sales slower'],
-      ['Network','What does a possession provide?','Protected access to infrastructure for planned work','Extra passenger capacity at peak time','A replacement for signalling'],
-      ['Disruption','During disruption, what should passenger information be?','Accurate, timely and consistent across channels','Delayed until the full cause is known','Different at every station to avoid repetition'],
-      ['Disruption','What is a key first step after a major incident?','Protect people and make the area safe','Restart all trains immediately','Wait for social media reports'],
-      ['Disruption','Why are contingency plans rehearsed?','To make coordinated responses faster and safer','To eliminate the need for control staff','To guarantee no disruption can happen'],
-      ['Customer','What makes an effective service recovery message?','Clear impact, practical options and the next update time','A technical explanation with no travel advice','A promise that there will be no delays'],
-      ['Customer','Which accessibility practice is most inclusive?','Offer assistance proactively while respecting independence','Assume every disabled passenger needs identical help','Only provide help if a complaint is made'],
-      ['Safety','What is the purpose of a risk assessment?','Identify hazards and put proportionate controls in place','Prove that an activity has no risk','Replace staff training'],
-      ['Safety','What does reporting a near miss enable?','Learning before an incident causes harm','Automatic disciplinary action','A guarantee the same event will recur'],
-      ['Performance','Which indicator directly measures punctuality?','The proportion of services arriving within the defined threshold','The number of trains painted this year','Average platform length'],
-      ['Performance','What is the value of analysing delay attribution?','It identifies causes so improvements can be targeted','It makes every delay the operator’s fault','It replaces real-time train control'],
-      ['Freight','Why is wagon utilisation important?','It improves the efficiency of available freight capacity','It decides passenger fare levels','It prevents all terminal congestion'],
-      ['Freight','What is a freight terminal’s core role?','Transfer and handle goods between rail and other modes','Sell commuter season tickets','Control passenger train signals'],
-      ['Environment','How can rail operators reduce traction energy use?','Use efficient driving and reduce unnecessary idling','Run empty trains at maximum speed','Keep doors open between stations'],
-      ['Environment','What is modal shift in transport?','Moving journeys or freight from higher-carbon modes to rail','Changing every rail journey to road','Adding more car parking at stations'],
-      ['Planning','What is demand forecasting used for?','Inform service, capacity and investment decisions','Guarantee exact passenger numbers','Set signal aspects in real time'],
-      ['Planning','Why are connections designed into a timetable?','To make end-to-end journeys practical and reliable','To ensure every train waits indefinitely','To remove the need for platforms'],
-      ['Assets','What is preventive maintenance?','Planned work to reduce the likelihood of asset failure','Repairing equipment only after it fails','Replacing every asset annually'],
-      ['Assets','Why is asset condition data valuable?','It helps prioritise maintenance and renewal','It removes the need for inspections','It determines ticket refund values'],
-      ['People','What supports a strong safety culture?','People speaking up and acting on concerns','Keeping mistakes hidden','Treating procedures as optional'],
-      ['Digital','How can real-time data help control?','It supports informed, timely operational decisions','It removes the need for trained controllers','It makes timetables permanently fixed'],
-      ['Revenue protection','What is the fair aim of ticket checks?','Protect revenue while treating customers consistently','Penalise every customer who asks a question','Replace all customer service staff'],
-      ['Stakeholders','Why coordinate with infrastructure managers?','Train service and track access must be planned together','They only manage station retail','It avoids the need for safety rules']
-    ].map(([topic,question,correct,almost,wrong]) => ({topic,question,choices:[correct,almost,wrong],correct:0}));
-    const canvas=document.getElementById('game'), ctx=canvas.getContext('2d'), cover=document.getElementById('cover'), modal=document.getElementById('modal'), card=document.getElementById('questionCard');
-    const grid=20, cell=30; let snake, food, dir, nextDir, timer, running=false, asked=0, score=0, questions=[];
-    function randomCell(){ let p; do p={x:Math.floor(Math.random()*grid),y:Math.floor(Math.random()*grid)}; while(snake.some(s=>s.x===p.x&&s.y===p.y)); return p; }
-    function draw(){ ctx.clearRect(0,0,600,600); ctx.fillStyle='#ffbf3f'; ctx.fillRect(food.x*cell+5,food.y*cell+5,20,20); ctx.fillStyle='#ef8b28'; ctx.fillRect(food.x*cell+9,food.y*cell+9,12,12); snake.forEach((p,i)=>{ctx.fillStyle=i?'#0b5e8e':'#073b59';ctx.fillRect(p.x*cell+3,p.y*cell+3,24,24);}); const h=snake[0];ctx.fillStyle='#37d6d0';ctx.fillRect(h.x*cell+8,h.y*cell+8,14,14); }
-    function tick(){ dir=nextDir; const head={x:snake[0].x+dir.x,y:snake[0].y+dir.y}; if(head.x<0||head.y<0||head.x>=grid||head.y>=grid||snake.some(p=>p.x===head.x&&p.y===head.y)){ end('Route interrupted','Your train met a boundary or its own route. Try the assessment again.'); return; } snake.unshift(head); if(head.x===food.x&&head.y===food.y){ asked++; updateHud(); clearInterval(timer); running=false; showQuestion(); } else snake.pop(); draw(); }
-    function updateHud(){ document.getElementById('count').textContent=`${asked} / 10`; document.getElementById('correct').textContent=score; document.getElementById('bar').style.width=`${asked*10}%`; }
-    function shuffle(a){ return [...a].sort(()=>Math.random()-.5); } function showQuestion(){ const q=questions[asked-1], choices=shuffle(q.choices.map((text,i)=>({text,isCorrect:i===q.correct}))); card.innerHTML=`<div class="eyebrow">Signal ${asked} of 10 · ${q.topic}</div><h2>${q.question}</h2><div class="answers">${choices.map((a,i)=>`<button class="answer" data-correct="${a.isCorrect}"><span>${'ABC'[i]}</span>${a.text}</button>`).join('')}</div><p class="feedback"></p>`; modal.classList.remove('hidden'); card.querySelectorAll('.answer').forEach(b=>b.onclick=()=>answer(b)); }
-    function answer(button){ const good=button.dataset.correct==='true'; card.querySelectorAll('.answer').forEach(b=>{b.disabled=true;if(b.dataset.correct==='true')b.classList.add('correct');}); if(good){score++; updateHud();card.querySelector('.feedback').textContent='Correct — that signal is clear.';}else {button.classList.add('incorrect');card.querySelector('.feedback').textContent='Not quite. The highlighted answer is the safest, strongest choice.';} const done=asked===10; const cont=document.createElement('button');cont.className='continue';cont.textContent=done?'See results':'Continue route';cont.onclick=()=>{modal.classList.add('hidden');if(done)results();else {food=randomCell();running=true;timer=setInterval(tick,145);draw();}};card.append(cont); }
-    function results(){ const passed=score>8; card.innerHTML=`<div class="result"><div class="eyebrow">Assessment complete</div><h2>${passed?'Excellent driving.':'Route complete.'}</h2><div class="score">${score}<small>/10</small></div><p class="${passed?'validated':'not-yet'}">${passed?'Skills validated':'Keep practising — skills not yet validated'}</p><p>You answered ${score} of 10 rail transport knowledge checks correctly.</p><button class="start" onclick="location.reload()">Run another route</button></div>`;modal.classList.remove('hidden'); }
-    function end(title,text){clearInterval(timer);running=false;cover.innerHTML=`<div><div class="eyebrow">Signal lost</div><h2>${title}</h2><p>${text}</p><button class="start" onclick="location.reload()">Restart route</button></div>`;cover.classList.remove('hidden');}
-    function start(){ snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];dir={x:1,y:0};nextDir=dir;asked=0;score=0;questions=shuffle(bank).slice(0,10);food=randomCell();updateHud();cover.classList.add('hidden');running=true;draw();timer=setInterval(tick,145); }
-    document.getElementById('start').onclick=start; document.addEventListener('keydown',e=>{const keys={ArrowUp:{x:0,y:-1},w:{x:0,y:-1},ArrowDown:{x:0,y:1},s:{x:0,y:1},ArrowLeft:{x:-1,y:0},a:{x:-1,y:0},ArrowRight:{x:1,y:0},d:{x:1,y:0}};const n=keys[e.key];if(n&&running&&!(n.x===-dir.x&&n.y===-dir.y)){e.preventDefault();nextDir=n;}});
-  </script>
+  <main>
+    <p class="eyebrow">Maison de campagne · Départ</p>
+    <h1>La Gévraisière,<br>en paix.</h1>
+    <p class="intro">
+      Avant de prendre la route, choisissez la façon la plus agréable de faire votre tour de maison.
+    </p>
+
+    <section class="mode-list" aria-label="Choisir un mode de checklist">
+      <a class="mode-card" href="gevraisiere.html">
+        <div class="mode-heading">
+          <span class="mode-icon" aria-hidden="true">☑️</span>
+          <h2>Checklist complète</h2>
+          <span class="arrow" aria-hidden="true">→</span>
+        </div>
+        <p>Voir toutes les pièces et toutes les actions d’un seul coup d’œil. Idéal pour faire le tour de la maison à votre rythme.</p>
+        <span class="tag">Vue par catégories</span>
+      </a>
+
+      <a class="mode-card" href="checkout-quizz.html">
+        <div class="mode-heading">
+          <span class="mode-icon" aria-hidden="true">🗺️</span>
+          <h2>Mode guidé</h2>
+          <span class="arrow" aria-hidden="true">→</span>
+        </div>
+        <p>Une question après l’autre, avec de grands boutons OK, KO et N/A. Idéal pour ne rien oublier en chemin.</p>
+        <span class="tag">26 étapes, une par une</span>
+      </a>
+    </section>
+
+    <footer>Les réponses sont enregistrées uniquement sur cet appareil.</footer>
+  </main>
 </body>
 </html>
