@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e36">
+  <title>La Gévraisière · Checklist de départ</title>
+  <style>
+    :root { --forest:#173e36; --pine:#28564a; --sage:#dfe8dc; --cream:#f7f4ed; --paper:#fffdf8; --ink:#18332e; --muted:#6c7c76; --line:#d7ddd4; --sun:#e8b94c; --green:#25804c; --green-soft:#e4f4e8; --shadow:0 18px 45px rgba(32,65,55,.12); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--ink); background:linear-gradient(115deg,#edf0e7 0%,#f7f4ed 52%,#e5eee4 100%); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
+    button,input { font:inherit; }
+    .page { width:min(1180px,calc(100% - 36px)); margin:auto; padding:28px 0 56px; }
+    header { color:white; position:relative; overflow:hidden; padding:clamp(30px,6vw,70px); border-radius:28px; background:linear-gradient(125deg,var(--forest),#285e4f); box-shadow:var(--shadow); }
+    header::after { content:""; position:absolute; width:330px; height:330px; border:1px solid #ffffff2b; border-radius:50%; right:-95px; top:-125px; box-shadow:0 0 0 38px #ffffff0d,0 0 0 78px #ffffff0a; }
+    .eyebrow { margin:0 0 12px; color:#d6e6cc; letter-spacing:.16em; text-transform:uppercase; font-size:.72rem; font-weight:800; }
+    h1 { margin:0; max-width:660px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.5rem,6vw,5.2rem); line-height:.93; letter-spacing:-.055em; }
+    .intro { position:relative; z-index:1; max-width:550px; margin:20px 0 0; color:#e8f0e6; font-size:1.05rem; line-height:1.55; }
+    .status { position:relative; z-index:1; margin-top:31px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
+    .badge { display:flex; align-items:center; gap:11px; padding:10px 15px; color:#f8f7ee; background:#ffffff17; border:1px solid #ffffff2d; border-radius:999px; font-size:.92rem; }
+    .progress-track { width:min(280px,60vw); height:8px; overflow:hidden; background:#ffffff36; border-radius:99px; } .progress-track i { display:block; width:0; height:100%; border-radius:inherit; background:var(--sun); transition:width .35s ease; }
+    .content { display:grid; grid-template-columns:minmax(0,1fr) 290px; gap:28px; margin-top:28px; align-items:start; }
+    .actions { position:sticky; top:20px; order:2; padding:25px; background:var(--paper); border:1px solid #fff; border-radius:22px; box-shadow:var(--shadow); }
+    .actions h2 { margin:0 0 8px; font-size:1.1rem; } .actions p { color:var(--muted); font-size:.9rem; line-height:1.45; }
+    .all-done { display:none; margin:18px 0; padding:16px; color:#17613a; background:var(--green-soft); border-radius:14px; font-size:.91rem; line-height:1.4; }
+    .all-done.show { display:block; animation:rise .35s ease both; } .flag { font-size:2rem; float:left; margin:0 10px 5px 0; }
+    .button { width:100%; margin-top:9px; padding:12px 15px; border:1px solid var(--line); border-radius:10px; cursor:pointer; color:var(--forest); background:white; font-weight:700; transition:.2s; } .button:hover { transform:translateY(-1px); border-color:var(--pine); } .button.primary { color:white; background:var(--forest); border-color:var(--forest); } .button.primary:hover { background:var(--pine); }
+    .checklist { display:grid; gap:18px; }
+    section { padding:clamp(20px,3vw,30px); background:var(--paper); border:1px solid #fff; border-radius:22px; box-shadow:0 9px 25px rgba(32,65,55,.07); }
+    .section-top { display:flex; justify-content:space-between; gap:15px; align-items:baseline; margin-bottom:15px; } h2 { margin:0; font-size:1.2rem; } .count { color:var(--muted); font-size:.78rem; font-weight:700; white-space:nowrap; }
+    .items { display:grid; gap:8px; }
+    label { display:flex; gap:13px; align-items:flex-start; padding:10px 8px; border-radius:10px; cursor:pointer; line-height:1.35; transition:background .18s,color .18s; }
+    label:hover { background:#f0f5ee; } label:has(input:checked) { color:#75857e; }
+    input { appearance:none; flex:0 0 22px; width:22px; height:22px; margin:0; border:2px solid #afbbb2; border-radius:6px; background:white; cursor:pointer; transition:.18s; }
+    input:checked { border-color:var(--green); background:var(--green); box-shadow:inset 0 0 0 4px white; } input:focus-visible,button:focus-visible { outline:3px solid #e8b94c; outline-offset:3px; }
+    label:has(input:checked) span { text-decoration:line-through; text-decoration-color:#aebcb2; }
+    footer { margin-top:24px; color:var(--muted); text-align:center; font-size:.8rem; }
+    @keyframes rise { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:none } }
+    @media (max-width:800px) { .content { grid-template-columns:1fr; } .actions { position:static; order:0; } .actions .button { width:auto; margin-right:7px; } }
+    @media (max-width:480px) { .page { width:min(100% - 24px,1180px); padding-top:12px; } header { border-radius:20px; padding:31px 25px; } section { border-radius:17px; padding:20px 16px; } .status { align-items:flex-start; flex-direction:column; gap:11px; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="eyebrow">Maison de campagne · Rituel de départ</p>
+      <h1>La Gévraisière,<br>fermée en douceur.</h1>
+      <p class="intro">Prenez quelques minutes avant de partir : cochez chaque étape, et laissez la maison tranquille jusqu’à la prochaine escapade.</p>
+      <div class="status"><div class="badge"><strong id="total">0 / 26</strong> points vérifiés</div><div class="progress-track" aria-label="Progression"><i id="bar"></i></div></div>
+    </header>
+    <div class="content">
+      <aside class="actions" aria-label="Actions de la checklist">
+        <h2>Prêt à partir ?</h2>
+        <p id="asideText">Cochez les éléments au fil de votre tour de maison.</p>
+        <div class="all-done" id="allDone"><span class="flag">🚩</span><strong>Tout est en ordre !</strong><br>Vous pouvez partir l’esprit léger.</div>
+        <button class="button primary" id="checkAll">Tout cocher</button>
+        <button class="button" id="reset">Recommencer la vérification</button>
+      </aside>
+      <main class="checklist" id="checklist"></main>
+    </div>
+    <footer>La checklist est enregistrée sur cet appareil jusqu’à votre prochaine vérification.</footer>
+  </div>
+  <script>
+    const groups = [
+      ['Salles de bains',['Récupérer le linge humide','Vider les poubelles des SdB']],
+      ['Chambres',['Tirer les lits du mur','Retirer les draps des lits (à valider avec Maman)','Fermer les Velux (incluant celui de la salle de bains)']],
+      ['Salon',['Enlever les cendres de la cheminée','Couvrir les 3 canapés']],
+      ['Extérieur',["Ranger les outils Makita à l'intérieur de la maison ou dans l’atelier","Ranger la plancha (dans l'atelier)","Vérifier l'appentis (ne rien laisser dehors)","Fermer l'atelier (et laisser la clé dans la cuisine)"]],
+      ['Cuisine',['Vider cafetière Nespresso','Vider le frigo','Faire une photo du frigo','Laisser le lave-vaisselle ouvert',"Couvrir l'électroménager avec leur housse",'Ne pas laisser de pain et de nourriture dans la cuisine ! (souris)','Sortir les poubelles','Couper le chauffe-eau au compteur (baisser le bouton « chauffe-eau »)']],
+      ['Check final',['Vérifier les radiateurs (mode auto/maison)','Fermer les volets (avec les barres)','Fermer aussi le volet des WC !','Mettre les protections sur les portes','Fermer la porte du séjour à clefs',"Fermer la porte d'entrée à clefs",'Régler le programme de chauffage sur l’app Voltalis (Guiom)']]
+    ];
+    const list=document.querySelector('#checklist'), total=document.querySelector('#total'), bar=document.querySelector('#bar'), asideText=document.querySelector('#asideText'), allDone=document.querySelector('#allDone');
+    const saved=JSON.parse(localStorage.getItem('gevraisiere-checklist')||'{}');
+    let index=0;
+    groups.forEach(([title,items])=>{ const section=document.createElement('section'); section.innerHTML=`<div class="section-top"><h2>${title}</h2><span class="count">0 / ${items.length}</span></div><div class="items"></div>`; const container=section.querySelector('.items'); items.forEach(text=>{const id=`task-${index++}`; const label=document.createElement('label'); label.innerHTML=`<input type="checkbox" id="${id}" ${saved[id]?'checked':''}><span>${text}</span>`; container.append(label);}); list.append(section); });
+    function update(){ const boxes=[...document.querySelectorAll('input[type=checkbox]')], done=boxes.filter(b=>b.checked).length; total.textContent=`${done} / ${boxes.length}`; bar.style.width=`${done/boxes.length*100}%`; asideText.textContent=done===boxes.length?'La maison est prête. Bonne route !':`${boxes.length-done} point${boxes.length-done>1?'s':''} à vérifier avant de partir.`; allDone.classList.toggle('show',done===boxes.length); document.querySelectorAll('section').forEach(s=>{const b=[...s.querySelectorAll('input')], n=b.filter(x=>x.checked).length; s.querySelector('.count').textContent=`${n} / ${b.length}`;}); localStorage.setItem('gevraisiere-checklist',JSON.stringify(Object.fromEntries(boxes.map(b=>[b.id,b.checked])))); }
+    document.addEventListener('change',e=>{if(e.target.matches('input'))update();}); document.querySelector('#checkAll').onclick=()=>{document.querySelectorAll('input').forEach(b=>b.checked=true);update();}; document.querySelector('#reset').onclick=()=>{if(confirm('Décochez tous les éléments pour une nouvelle vérification ?')){document.querySelectorAll('input').forEach(b=>b.checked=false);update();}}; update();
+  </script>
+</body>
+</html>
