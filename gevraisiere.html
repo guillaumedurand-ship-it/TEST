@@ -6,38 +6,22 @@
   <meta name="theme-color" content="#173e36">
   <title>La Gévraisière · Checklist de départ</title>
   <style>
-    :root { --forest:#173e36; --pine:#28564a; --sage:#dfe8dc; --cream:#f7f4ed; --paper:#fffdf8; --ink:#18332e; --muted:#6c7c76; --line:#d7ddd4; --sun:#e8b94c; --green:#25804c; --green-soft:#e4f4e8; --shadow:0 18px 45px rgba(32,65,55,.12); }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; color:var(--ink); background:linear-gradient(115deg,#edf0e7 0%,#f7f4ed 52%,#e5eee4 100%); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
-    button,input { font:inherit; }
-    .page { width:min(1180px,calc(100% - 36px)); margin:auto; padding:28px 0 56px; }
-    header { color:white; position:relative; overflow:hidden; padding:clamp(30px,6vw,70px); border-radius:28px; background:linear-gradient(125deg,var(--forest),#285e4f); box-shadow:var(--shadow); }
-    header::after { content:""; position:absolute; width:330px; height:330px; border:1px solid #ffffff2b; border-radius:50%; right:-95px; top:-125px; box-shadow:0 0 0 38px #ffffff0d,0 0 0 78px #ffffff0a; }
-    .eyebrow { margin:0 0 12px; color:#d6e6cc; letter-spacing:.16em; text-transform:uppercase; font-size:.72rem; font-weight:800; }
-    h1 { margin:0; max-width:660px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.5rem,6vw,5.2rem); line-height:.93; letter-spacing:-.055em; }
-    .intro { position:relative; z-index:1; max-width:550px; margin:20px 0 0; color:#e8f0e6; font-size:1.05rem; line-height:1.55; }
-    .status { position:relative; z-index:1; margin-top:31px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
-    .badge { display:flex; align-items:center; gap:11px; padding:10px 15px; color:#f8f7ee; background:#ffffff17; border:1px solid #ffffff2d; border-radius:999px; font-size:.92rem; }
-    .progress-track { width:min(280px,60vw); height:8px; overflow:hidden; background:#ffffff36; border-radius:99px; } .progress-track i { display:block; width:0; height:100%; border-radius:inherit; background:var(--sun); transition:width .35s ease; }
-    .content { display:grid; grid-template-columns:minmax(0,1fr) 290px; gap:28px; margin-top:28px; align-items:start; }
-    .actions { position:sticky; top:20px; order:2; padding:25px; background:var(--paper); border:1px solid #fff; border-radius:22px; box-shadow:var(--shadow); }
-    .actions h2 { margin:0 0 8px; font-size:1.1rem; } .actions p { color:var(--muted); font-size:.9rem; line-height:1.45; }
-    .all-done { display:none; margin:18px 0; padding:16px; color:#17613a; background:var(--green-soft); border-radius:14px; font-size:.91rem; line-height:1.4; }
-    .all-done.show { display:block; animation:rise .35s ease both; } .flag { font-size:2rem; float:left; margin:0 10px 5px 0; }
-    .button { width:100%; margin-top:9px; padding:12px 15px; border:1px solid var(--line); border-radius:10px; cursor:pointer; color:var(--forest); background:white; font-weight:700; transition:.2s; } .button:hover { transform:translateY(-1px); border-color:var(--pine); } .button.primary { color:white; background:var(--forest); border-color:var(--forest); } .button.primary:hover { background:var(--pine); }
-    .checklist { display:grid; gap:18px; }
-    section { padding:clamp(20px,3vw,30px); background:var(--paper); border:1px solid #fff; border-radius:22px; box-shadow:0 9px 25px rgba(32,65,55,.07); }
-    .section-top { display:flex; justify-content:space-between; gap:15px; align-items:baseline; margin-bottom:15px; } h2 { margin:0; font-size:1.2rem; } .count { color:var(--muted); font-size:.78rem; font-weight:700; white-space:nowrap; }
-    .items { display:grid; gap:8px; }
-    label { display:flex; gap:13px; align-items:flex-start; padding:10px 8px; border-radius:10px; cursor:pointer; line-height:1.35; transition:background .18s,color .18s; }
-    label:hover { background:#f0f5ee; } label:has(input:checked) { color:#75857e; }
-    input { appearance:none; flex:0 0 22px; width:22px; height:22px; margin:0; border:2px solid #afbbb2; border-radius:6px; background:white; cursor:pointer; transition:.18s; }
-    input:checked { border-color:var(--green); background:var(--green); box-shadow:inset 0 0 0 4px white; } input:focus-visible,button:focus-visible { outline:3px solid #e8b94c; outline-offset:3px; }
-    label:has(input:checked) span { text-decoration:line-through; text-decoration-color:#aebcb2; }
-    footer { margin-top:24px; color:var(--muted); text-align:center; font-size:.8rem; }
-    @keyframes rise { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:none } }
-    @media (max-width:800px) { .content { grid-template-columns:1fr; } .actions { position:static; order:0; } .actions .button { width:auto; margin-right:7px; } }
-    @media (max-width:480px) { .page { width:min(100% - 24px,1180px); padding-top:12px; } header { border-radius:20px; padding:31px 25px; } section { border-radius:17px; padding:20px 16px; } .status { align-items:flex-start; flex-direction:column; gap:11px; } }
+    :root { --forest:#173e36; --pine:#28564a; --paper:#fffdf8; --ink:#18332e; --muted:#66766f; --line:#d7ddd4; --sun:#d69220; --green:#21824b; --green-soft:#e1f3e7; --red:#b93b3b; --red-soft:#fde8e7; --na:#936b1b; --na-soft:#fff2cf; --shadow:0 15px 40px rgba(32,65,55,.11); }
+    * { box-sizing:border-box; } body { margin:0; min-height:100vh; color:var(--ink); background:linear-gradient(115deg,#edf0e7,#f7f4ed 52%,#e5eee4); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; transition:background .55s ease; } body.is-ready { background:radial-gradient(circle at 12% 10%,#e7ffe9 0 16%,transparent 38%),linear-gradient(135deg,#bcecc8,#dff6df 52%,#aee0bc); } body.is-ready header { background:linear-gradient(125deg,#17643b,#309557); }
+    button { font:inherit; } .page { width:min(1180px,calc(100% - 28px)); margin:auto; padding:20px 0 56px; }
+    header { position:relative; overflow:hidden; padding:clamp(30px,6vw,70px); color:#fff; border-radius:28px; background:linear-gradient(125deg,var(--forest),#285e4f); box-shadow:var(--shadow); }
+    header::after { content:""; position:absolute; width:330px; height:330px; right:-95px; top:-125px; border:1px solid #ffffff2b; border-radius:50%; box-shadow:0 0 0 38px #ffffff0d,0 0 0 78px #ffffff0a; }
+    .eyebrow { position:relative; z-index:1; margin:0 0 12px; color:#d6e6cc; letter-spacing:.16em; text-transform:uppercase; font-size:.72rem; font-weight:800; } h1 { position:relative; z-index:1; max-width:660px; margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.5rem,6vw,5.2rem); line-height:.93; letter-spacing:-.055em; }
+    .intro { position:relative; z-index:1; max-width:590px; margin:20px 0 0; color:#e8f0e6; font-size:1.05rem; line-height:1.55; } .status { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:16px; align-items:center; margin-top:31px; }
+    .badge { display:flex; gap:9px; align-items:center; padding:10px 15px; border:1px solid #ffffff2d; border-radius:999px; background:#ffffff17; font-size:.92rem; } .progress-track { width:min(280px,60vw); height:9px; overflow:hidden; border-radius:99px; background:#ffffff36; } .progress-track i { display:block; width:0; height:100%; border-radius:inherit; background:#f0c759; transition:width .3s ease; }
+    .content { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:28px; align-items:start; margin-top:28px; } .actions { position:sticky; top:18px; order:2; padding:25px; border:1px solid #fff; border-radius:22px; background:var(--paper); box-shadow:var(--shadow); } .actions h2 { margin:0 0 8px; font-size:1.2rem; } .actions p { color:var(--muted); font-size:.92rem; line-height:1.45; }
+    .all-done { display:none; margin:18px 0; padding:16px; color:#17613a; border-radius:14px; background:var(--green-soft); font-size:.94rem; line-height:1.4; } .all-done.show { display:block; animation:rise .35s ease both; } .flag { float:left; margin:0 10px 5px 0; font-size:2rem; }
+    .button { width:100%; min-height:52px; margin-top:10px; padding:13px 16px; border:1px solid var(--line); border-radius:12px; color:var(--forest); background:#fff; cursor:pointer; font-weight:800; transition:.18s; } .button:hover { transform:translateY(-1px); border-color:var(--pine); } .button.primary { color:#fff; border-color:var(--forest); background:var(--forest); } .button.primary:hover { background:var(--pine); }
+    .checklist { display:grid; gap:18px; } section { padding:clamp(20px,3vw,30px); border:1px solid #fff; border-radius:22px; background:var(--paper); box-shadow:0 9px 25px rgba(32,65,55,.07); } .section-top { display:flex; gap:15px; align-items:center; justify-content:space-between; margin-bottom:16px; } .room-title { display:flex; gap:11px; align-items:center; } .room-icon { display:grid; width:42px; height:42px; place-items:center; border-radius:12px; background:#e8f0e6; font-size:1.45rem; } h2 { margin:0; font-size:1.2rem; } .count { color:var(--muted); font-size:.8rem; font-weight:800; white-space:nowrap; }
+    .items { display:grid; gap:12px; } .task { padding:13px; border:1px solid var(--line); border-radius:15px; background:#fff; transition:.18s; } .task[data-state="ok"] { border-color:#92d1aa; background:#fbfffc; } .task[data-state="ko"] { border-color:#edb5b1; background:#fffafa; } .task[data-state="na"] { border-color:#e8ce8f; background:#fffdf7; } .task-name { display:block; margin:0 0 12px; font-size:1rem; font-weight:700; line-height:1.35; }
+    .choices { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; } .choice { min-height:54px; border:2px solid #d7ddd4; border-radius:11px; color:#53645c; background:#fff; cursor:pointer; font-size:.9rem; font-weight:900; letter-spacing:.02em; transition:.15s; } .choice:hover { transform:translateY(-1px); border-color:#809188; } .choice:focus-visible,.button:focus-visible { outline:3px solid #e8b94c; outline-offset:3px; } .choice[aria-pressed="true"] { color:#fff; } .choice.ok[aria-pressed="true"] { border-color:var(--green); background:var(--green); } .choice.ko[aria-pressed="true"] { border-color:var(--red); background:var(--red); } .choice.na[aria-pressed="true"] { border-color:var(--na); background:var(--na); }
+    footer { margin-top:24px; color:var(--muted); text-align:center; font-size:.8rem; } @keyframes rise { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:none } }
+    @media (max-width:800px) { .content { grid-template-columns:1fr; } .actions { position:static; order:0; } .actions .button { width:calc(50% - 5px); } } @media (max-width:480px) { .page { width:min(100% - 20px,1180px); padding-top:10px; } header { padding:31px 24px; border-radius:20px; } .status { flex-direction:column; align-items:flex-start; gap:11px; } section { padding:20px 14px; border-radius:17px; } .task { padding:12px; } .choice { min-height:58px; font-size:.94rem; } }
   </style>
 </head>
 <body>
@@ -45,36 +29,30 @@
     <header>
       <p class="eyebrow">Maison de campagne · Rituel de départ</p>
       <h1>La Gévraisière,<br>fermée en douceur.</h1>
-      <p class="intro">Prenez quelques minutes avant de partir : cochez chaque étape, et laissez la maison tranquille jusqu’à la prochaine escapade.</p>
-      <div class="status"><div class="badge"><strong id="total">0 / 26</strong> points vérifiés</div><div class="progress-track" aria-label="Progression"><i id="bar"></i></div></div>
+      <p class="intro">Faites votre tour de maison et touchez un grand bouton pour chaque point : <strong>OK</strong>, <strong>KO</strong> ou <strong>N/A</strong>.</p>
+      <div class="status"><div class="badge"><strong id="total">0 / 26</strong> points traités</div><div class="progress-track" aria-label="Progression"><i id="bar"></i></div></div>
     </header>
     <div class="content">
-      <aside class="actions" aria-label="Actions de la checklist">
-        <h2>Prêt à partir ?</h2>
-        <p id="asideText">Cochez les éléments au fil de votre tour de maison.</p>
-        <div class="all-done" id="allDone"><span class="flag">🚩</span><strong>Tout est en ordre !</strong><br>Vous pouvez partir l’esprit léger.</div>
-        <button class="button primary" id="checkAll">Tout cocher</button>
-        <button class="button" id="reset">Recommencer la vérification</button>
-      </aside>
+      <aside class="actions" aria-label="Actions de la checklist"><h2>Prêt à partir ?</h2><p id="asideText">Chaque point doit être OK ou N/A pour pouvoir partir.</p><div class="all-done" id="allDone"><span class="flag">🚩</span><strong>Tout est en ordre, même les N/A !</strong><br>Vous pouvez partir l’esprit léger.</div><button class="button primary" id="checkAll">Tout marquer OK</button><button class="button" id="reset">Recommencer la vérification</button></aside>
       <main class="checklist" id="checklist"></main>
     </div>
     <footer>La checklist est enregistrée sur cet appareil jusqu’à votre prochaine vérification.</footer>
   </div>
   <script>
     const groups = [
-      ['Salles de bains',['Récupérer le linge humide','Vider les poubelles des SdB']],
-      ['Chambres',['Tirer les lits du mur','Retirer les draps des lits (à valider avec Maman)','Fermer les Velux (incluant celui de la salle de bains)']],
-      ['Salon',['Enlever les cendres de la cheminée','Couvrir les 3 canapés']],
-      ['Extérieur',["Ranger les outils Makita à l'intérieur de la maison ou dans l’atelier","Ranger la plancha (dans l'atelier)","Vérifier l'appentis (ne rien laisser dehors)","Fermer l'atelier (et laisser la clé dans la cuisine)"]],
-      ['Cuisine',['Vider cafetière Nespresso','Vider le frigo','Faire une photo du frigo','Laisser le lave-vaisselle ouvert',"Couvrir l'électroménager avec leur housse",'Ne pas laisser de pain et de nourriture dans la cuisine ! (souris)','Sortir les poubelles','Couper le chauffe-eau au compteur (baisser le bouton « chauffe-eau »)']],
-      ['Check final',['Vérifier les radiateurs (mode auto/maison)','Fermer les volets (avec les barres)','Fermer aussi le volet des WC !','Mettre les protections sur les portes','Fermer la porte du séjour à clefs',"Fermer la porte d'entrée à clefs",'Régler le programme de chauffage sur l’app Voltalis (Guiom)']]
+      ['Salles de bains','🛁',['Récupérer le linge humide','Vider les poubelles des SdB']],
+      ['Chambres','🛏️',['Tirer les lits du mur','Retirer les draps des lits (à valider avec Maman)','Fermer les Velux (incluant celui de la salle de bains)']],
+      ['Salon','🛋️',['Enlever les cendres de la cheminée','Couvrir les 3 canapés']],
+      ['Extérieur','🌿',["Ranger les outils Makita à l'intérieur de la maison ou dans l’atelier","Ranger la plancha (dans l'atelier)","Vérifier l'appentis (ne rien laisser dehors)","Fermer l'atelier (et laisser la clé dans la cuisine)"]],
+      ['Cuisine','🍽️',['Vider cafetière Nespresso','Vider le frigo','Faire une photo du frigo','Laisser le lave-vaisselle ouvert',"Couvrir l'électroménager avec leur housse",'Ne pas laisser de pain et de nourriture dans la cuisine ! (souris)','Sortir les poubelles','Couper le chauffe-eau au compteur (baisser le bouton « chauffe-eau »)']],
+      ['Check final','🔐',['Vérifier les radiateurs (mode auto/maison)','Fermer les volets (avec les barres)','Fermer aussi le volet des WC !','Mettre les protections sur les portes','Fermer la porte du séjour à clefs',"Fermer la porte d'entrée à clefs",'Régler le programme de chauffage sur l’app Voltalis (Guiom)']]
     ];
     const list=document.querySelector('#checklist'), total=document.querySelector('#total'), bar=document.querySelector('#bar'), asideText=document.querySelector('#asideText'), allDone=document.querySelector('#allDone');
-    const saved=JSON.parse(localStorage.getItem('gevraisiere-checklist')||'{}');
-    let index=0;
-    groups.forEach(([title,items])=>{ const section=document.createElement('section'); section.innerHTML=`<div class="section-top"><h2>${title}</h2><span class="count">0 / ${items.length}</span></div><div class="items"></div>`; const container=section.querySelector('.items'); items.forEach(text=>{const id=`task-${index++}`; const label=document.createElement('label'); label.innerHTML=`<input type="checkbox" id="${id}" ${saved[id]?'checked':''}><span>${text}</span>`; container.append(label);}); list.append(section); });
-    function update(){ const boxes=[...document.querySelectorAll('input[type=checkbox]')], done=boxes.filter(b=>b.checked).length; total.textContent=`${done} / ${boxes.length}`; bar.style.width=`${done/boxes.length*100}%`; asideText.textContent=done===boxes.length?'La maison est prête. Bonne route !':`${boxes.length-done} point${boxes.length-done>1?'s':''} à vérifier avant de partir.`; allDone.classList.toggle('show',done===boxes.length); document.querySelectorAll('section').forEach(s=>{const b=[...s.querySelectorAll('input')], n=b.filter(x=>x.checked).length; s.querySelector('.count').textContent=`${n} / ${b.length}`;}); localStorage.setItem('gevraisiere-checklist',JSON.stringify(Object.fromEntries(boxes.map(b=>[b.id,b.checked])))); }
-    document.addEventListener('change',e=>{if(e.target.matches('input'))update();}); document.querySelector('#checkAll').onclick=()=>{document.querySelectorAll('input').forEach(b=>b.checked=true);update();}; document.querySelector('#reset').onclick=()=>{if(confirm('Décochez tous les éléments pour une nouvelle vérification ?')){document.querySelectorAll('input').forEach(b=>b.checked=false);update();}}; update();
+    const saved=JSON.parse(localStorage.getItem('gevraisiere-checklist-v2')||'{}'); let index=0;
+    groups.forEach(([title,icon,items])=>{ const section=document.createElement('section'); section.innerHTML=`<div class="section-top"><div class="room-title"><span class="room-icon" aria-hidden="true">${icon}</span><h2>${title}</h2></div><span class="count">0 / ${items.length} traités</span></div><div class="items"></div>`; const container=section.querySelector('.items'); items.forEach(text=>{const id=`task-${index++}`, state=saved[id]||''; const task=document.createElement('article'); task.className='task'; task.dataset.id=id; task.dataset.state=state; task.innerHTML=`<span class="task-name">${text}</span><div class="choices" role="group" aria-label="État : ${text}"><button class="choice ok" data-state="ok" aria-pressed="${state==='ok'}">✓ OK</button><button class="choice ko" data-state="ko" aria-pressed="${state==='ko'}">✕ KO</button><button class="choice na" data-state="na" aria-pressed="${state==='na'}">— N/A</button></div>`; container.append(task);}); list.append(section); });
+    function update(){ const tasks=[...document.querySelectorAll('.task')], treated=tasks.filter(t=>t.dataset.state).length, ko=tasks.filter(t=>t.dataset.state==='ko').length, ready=tasks.length>0&&tasks.every(t=>t.dataset.state==='ok'||t.dataset.state==='na'); total.textContent=`${treated} / ${tasks.length}`; bar.style.width=`${treated/tasks.length*100}%`; asideText.textContent=ready?'La maison est prête. Bonne route !':ko?`${ko} point${ko>1?'s':''} KO à résoudre avant de partir.`:`${tasks.length-treated} point${tasks.length-treated>1?'s':''} à traiter avant de partir.`; allDone.classList.toggle('show',ready); document.body.classList.toggle('is-ready',ready); document.querySelectorAll('section').forEach(s=>{const tasks=[...s.querySelectorAll('.task')], n=tasks.filter(t=>t.dataset.state).length; s.querySelector('.count').textContent=`${n} / ${tasks.length} traités`;}); localStorage.setItem('gevraisiere-checklist-v2',JSON.stringify(Object.fromEntries(tasks.map(t=>[t.dataset.id,t.dataset.state])))); }
+    document.addEventListener('click',e=>{const button=e.target.closest('.choice'); if(!button)return; const task=button.closest('.task'), state=button.dataset.state; task.dataset.state=task.dataset.state===state?'':state; task.querySelectorAll('.choice').forEach(b=>b.setAttribute('aria-pressed',String(task.dataset.state===b.dataset.state))); update();});
+    document.querySelector('#checkAll').onclick=()=>{document.querySelectorAll('.task').forEach(t=>{t.dataset.state='ok';t.querySelectorAll('.choice').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.state==='ok')));});update();}; document.querySelector('#reset').onclick=()=>{if(confirm('Effacer tous les statuts pour une nouvelle vérification ?')){document.querySelectorAll('.task').forEach(t=>{t.dataset.state='';t.querySelectorAll('.choice').forEach(b=>b.setAttribute('aria-pressed','false'));});update();}}; update();
   </script>
 </body>
 </html>
