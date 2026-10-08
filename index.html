@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Voiture type Mario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div id="quiz-modal" class="hidden">
+            <div id="quiz-content">
+                <h2>Quelle est cette marque de voiture ?</h2>
+                <img id="car-image" src="" alt="Voiture">
+                <div id="choices">
+                    <p>1. <span id="choice-1"></span></p>
+                    <p>2. <span id="choice-2"></span></p>
+                    <p>3. <span id="choice-3"></span></p>
+                </div>
+                <p>Appuie sur 1, 2 ou 3 pour choisir !</p>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
